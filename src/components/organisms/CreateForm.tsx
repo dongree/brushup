@@ -4,6 +4,7 @@ import Label from "@/components/atoms/Label";
 import Level from "@/components/atoms/Level";
 import { Difficulty } from "@/types/common";
 import { FormEvent, useState } from "react";
+import { Button } from "../ui/button";
 
 export default function CreateForm() {
   const [link, setLink] = useState<string>("");
@@ -73,7 +74,7 @@ export default function CreateForm() {
           placeholder="문제 풀이 아이디어를 입력해주세요."
         />
       </div>
-      <button>제출</button>
+      <Button>제출</Button>
     </form>
   );
 }
