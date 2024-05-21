@@ -1,4 +1,4 @@
-import CreateForm from '@/components/organisms/CreateForm';
+import CreateForm from "@/components/organisms/CreateForm";
 
 export default function CreatePage() {
   return (

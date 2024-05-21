@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
 export default function QuestionCard() {
   return (
-    <section className="flex flex-col items-center justify-between h-48 w-48 bg-white py-1 rounded-lg border-[1px] border-black text-sm">
-      <button className="border-b-[1px] border-black w-full">
+    <section className="flex h-48 w-48 flex-col items-center justify-between rounded-lg border-[1px] border-black bg-white py-1 text-sm">
+      <button className="w-full border-b-[1px] border-black">
         문제 보러 가기
       </button>
       <div>XXO</div>

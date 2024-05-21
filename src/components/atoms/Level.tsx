@@ -1,4 +1,4 @@
-import { Difficulty } from '@/types/common';
+import { Difficulty } from "@/types/common";
 
 type Props = {
   difficulty: Difficulty;
@@ -10,7 +10,7 @@ export default function Level({ difficulty, selectedValue, onClick }: Props) {
   return (
     <button
       className={`text-sm ${
-        selectedValue === difficulty ? 'text-red-500' : 'text-black'
+        selectedValue === difficulty ? "text-red-500" : "text-black"
       }`}
       onClick={onClick}
     >

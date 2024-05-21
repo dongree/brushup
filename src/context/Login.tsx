@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { ClientSafeProvider, signIn } from 'next-auth/react';
+import { ClientSafeProvider, signIn } from "next-auth/react";
 
 type Props = {
   providers: Record<string, ClientSafeProvider>;

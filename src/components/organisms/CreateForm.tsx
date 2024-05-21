@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import Label from '@/components/atoms/Label';
-import Level from '@/components/atoms/Level';
-import { Difficulty } from '@/types/common';
-import { FormEvent, useState } from 'react';
+import Label from "@/components/atoms/Label";
+import Level from "@/components/atoms/Level";
+import { Difficulty } from "@/types/common";
+import { FormEvent, useState } from "react";
 
 export default function CreateForm() {
-  const [link, setLink] = useState<string>('');
-  const [type, setType] = useState<string>('');
-  const [difficulty, setDifficulty] = useState<Difficulty>('HARD');
-  const [idea, setIdea] = useState<string>('');
+  const [link, setLink] = useState<string>("");
+  const [type, setType] = useState<string>("");
+  const [difficulty, setDifficulty] = useState<Difficulty>("HARD");
+  const [idea, setIdea] = useState<string>("");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ export default function CreateForm() {
   };
 
   return (
-    <form className="flex flex-col my-1 w-[350px]" onSubmit={handleSubmit}>
+    <form className="my-1 flex w-[350px] flex-col" onSubmit={handleSubmit}>
       <div className="flex flex-col">
         <Label text="Link" htmlFor="link" />
         <input
@@ -41,28 +41,28 @@ export default function CreateForm() {
           onChange={(e) => setType(e.target.value)}
         />
       </div>
-      <div className="flex flex-col my-3">
+      <div className="my-3 flex flex-col">
         <Label text="난이도" />
         <div className="flex gap-2">
           <Level
             difficulty="HARD"
             selectedValue={difficulty}
-            onClick={() => setDifficulty('HARD')}
+            onClick={() => setDifficulty("HARD")}
           />
           <Level
             difficulty="MEDIUM"
             selectedValue={difficulty}
-            onClick={() => setDifficulty('MEDIUM')}
+            onClick={() => setDifficulty("MEDIUM")}
           />
           <Level
             difficulty="EASY"
             selectedValue={difficulty}
-            onClick={() => setDifficulty('EASY')}
+            onClick={() => setDifficulty("EASY")}
           />
         </div>
       </div>
 
-      <div className="flex flex-col my-3">
+      <div className="my-3 flex flex-col">
         <Label text="Idea" htmlFor="idea" />
         <textarea
           className="border-2"
