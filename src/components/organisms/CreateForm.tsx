@@ -1,10 +1,12 @@
 "use client";
 
-import Label from "@/components/atoms/Label";
 import Level from "@/components/atoms/Level";
 import { Difficulty } from "@/types/common";
 import { FormEvent, useState } from "react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function CreateForm() {
   const [link, setLink] = useState<string>("");
@@ -21,9 +23,8 @@ export default function CreateForm() {
   return (
     <form className="my-1 flex w-[350px] flex-col" onSubmit={handleSubmit}>
       <div className="flex flex-col">
-        <Label text="Link" htmlFor="link" />
-        <input
-          className="border-2"
+        <Label htmlFor="link">Link</Label>
+        <Input
           type="url"
           id="link"
           name="link"
@@ -32,9 +33,8 @@ export default function CreateForm() {
         />
       </div>
       <div className="flex flex-col">
-        <Label text="유형" htmlFor="type" />
-        <input
-          className="border-2"
+        <Label htmlFor="type">유형</Label>
+        <Input
           type="text"
           id="type"
           name="type"
@@ -43,7 +43,7 @@ export default function CreateForm() {
         />
       </div>
       <div className="my-3 flex flex-col">
-        <Label text="난이도" />
+        <Label>난이도</Label>
         <div className="flex gap-2">
           <Level
             difficulty="HARD"
@@ -64,9 +64,8 @@ export default function CreateForm() {
       </div>
 
       <div className="my-3 flex flex-col">
-        <Label text="Idea" htmlFor="idea" />
-        <textarea
-          className="border-2"
+        <Label htmlFor="idea">Idea</Label>
+        <Textarea
           id="idea"
           name="idea"
           value={idea}
