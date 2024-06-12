@@ -7,17 +7,19 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function CreateForm() {
   const [link, setLink] = useState<string>("");
   const [type, setType] = useState<string>("");
   const [difficulty, setDifficulty] = useState<Difficulty>("HARD");
   const [idea, setIdea] = useState<string>("");
+  const [isSolved, setIsSolved] = useState<boolean>(false);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log(link, type, difficulty, idea);
+    console.log(link, type, difficulty, idea, isSolved);
   };
 
   return (
@@ -72,6 +74,16 @@ export default function CreateForm() {
           onChange={(e) => setIdea(e.target.value)}
           placeholder="문제 풀이 아이디어를 입력해주세요."
         />
+      </div>
+      <div className="my-3 flex items-center space-x-2">
+        <Checkbox
+          id="solved"
+          checked={isSolved}
+          onClick={() => setIsSolved(!isSolved)}
+        />
+        <label htmlFor="solved" className="text-sm font-medium ">
+          Did you solved?
+        </label>
       </div>
       <Button>제출</Button>
     </form>
