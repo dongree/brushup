@@ -8,22 +8,51 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { createProblem } from "@/service/problem";
+import { Problem } from "@/types/problem";
+import { useRouter } from "next/navigation";
 
 export default function CreateForm() {
+  const [name, setName] = useState<string>("");
   const [link, setLink] = useState<string>("");
   const [type, setType] = useState<string>("");
   const [difficulty, setDifficulty] = useState<Difficulty>("HARD");
   const [idea, setIdea] = useState<string>("");
   const [isSolved, setIsSolved] = useState<boolean>(false);
+  const router = useRouter();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const problemData: Problem = {
+      name,
+      type,
+      difficulty,
+      link,
+      idea,
+      isSolved,
+    };
+
+    createProblem(problemData).then(() => {
+      router.push("/");
+      router.refresh();
+    });
     console.log(link, type, difficulty, idea, isSolved);
   };
 
   return (
     <form className="my-1 flex w-[350px] flex-col" onSubmit={handleSubmit}>
+      <div className="flex flex-col">
+        <Label htmlFor="name">Name</Label>
+        <Input
+          type="text"
+          id="name"
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+      </div>
       <div className="flex flex-col">
         <Label htmlFor="link">Link</Label>
         <Input
@@ -32,6 +61,7 @@ export default function CreateForm() {
           name="link"
           value={link}
           onChange={(e) => setLink(e.target.value)}
+          required
         />
       </div>
       <div className="flex flex-col">
@@ -42,6 +72,7 @@ export default function CreateForm() {
           name="type"
           value={type}
           onChange={(e) => setType(e.target.value)}
+          required
         />
       </div>
       <div className="my-3 flex flex-col">
