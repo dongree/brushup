@@ -13,7 +13,9 @@ export default function Header() {
         <Link href={"/"}> Brush Up</Link>
       </h1>
       <div className="flex gap-5">
-        <Button>입력</Button>
+        <Button>
+          <Link href={"/create"}>입력</Link>
+        </Button>
         {session ? (
           <Button onClick={() => signOut()}>로그아웃</Button>
         ) : (
