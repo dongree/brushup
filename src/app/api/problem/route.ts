@@ -3,7 +3,17 @@ import { Problem } from "@/types/problem";
 import { extractUserid } from "@/utils/auth";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {}
+export async function GET(req: Request) {
+  const cookie = req.headers.get("cookie");
+  if (!cookie) return NextResponse.json([]);
+
+  const userid = await extractUserid(cookie);
+
+  const q = `SELECT * FROM problems WHERE userid=${userid}`;
+  const data = await db.getConnection().then((connect) => connect.query(q));
+
+  return Response.json(data[0]);
+}
 
 export async function POST(req: Request) {
   const cookie = req.headers.get("cookie");

@@ -8,20 +8,37 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "./ui/button";
+import { ProblemRes } from "@/types/problem";
 
-export default function QuestionCard() {
+type Props = {
+  problem: ProblemRes;
+};
+
+export default function QuestionCard({ problem }: Props) {
+  const {
+    name,
+    type,
+    difficulty,
+    idea,
+    link,
+    recentlySolvedAt,
+    solvingHistory,
+  } = problem;
+
   return (
     <Card className="flex flex-col items-center">
       <CardHeader>
         <CardTitle className="text-base">
-          수 합치기2 <button>{">"}</button>
+          {name}
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            {">"}
+          </a>
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col items-center">
-        <div>난이도 : HARD</div>
-        <div>history : XXO</div>
-        <div>시도 횟수 : 2</div>
-        <div>최근 푼 날짜 : 2024.05.20</div>
+        <div>{`난이도 : ${difficulty}`}</div>
+        <div>{`history : ${solvingHistory}`}</div>
+        <div>{`최근 푼 날짜 : ${recentlySolvedAt.slice(0, 10)}`}</div>
         <div>Hint 보기</div>
       </CardContent>
       <CardFooter className="gap-1">
