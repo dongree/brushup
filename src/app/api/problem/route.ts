@@ -5,7 +5,8 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
   const cookie = req.headers.get("cookie");
-  if (!cookie) return NextResponse.json([]);
+  if (!cookie?.includes("next-auth.session-token="))
+    return NextResponse.json([]);
 
   const userid = await extractUserid(cookie);
 
@@ -17,7 +18,8 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   const cookie = req.headers.get("cookie");
-  if (!cookie) return NextResponse.json({ status: 404 });
+  if (!cookie?.includes("next-auth.session-token="))
+    return NextResponse.json({ status: 404 });
 
   const userid = await extractUserid(cookie);
 
