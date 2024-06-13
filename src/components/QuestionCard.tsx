@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "./ui/button";
 import { ProblemRes } from "@/types/problem";
+import { resolve } from "@/service/problem";
 
 type Props = {
   problem: ProblemRes;
@@ -16,6 +17,7 @@ type Props = {
 
 export default function QuestionCard({ problem }: Props) {
   const {
+    id,
     name,
     type,
     difficulty,
@@ -42,8 +44,8 @@ export default function QuestionCard({ problem }: Props) {
         <div>Hint 보기</div>
       </CardContent>
       <CardFooter className="gap-1">
-        <Button>해결</Button>
-        <Button>살패</Button>
+        <Button onClick={() => resolve(id, true)}>해결</Button>
+        <Button onClick={() => resolve(id, false)}>살패</Button>
         <Button>나중에</Button>
       </CardFooter>
     </Card>
