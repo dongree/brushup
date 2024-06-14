@@ -1,27 +1,18 @@
-"use client";
-
-import { useSession, signIn, signOut } from "next-auth/react";
-import { Button } from "./ui/button";
 import Link from "next/link";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import SubmenuOnLogin from "@/components/SubMenuOnLogin";
+import SubMenuOnLogout from "@/components/SubMenuOnLogout";
 
-export default function Header() {
-  const { data: session } = useSession();
+export default async function Header() {
+  const session = await getServerSession(authOptions);
 
   return (
     <header className="flex h-16 items-center justify-between bg-gray-100 px-10">
       <h1 className="text-lg font-semibold">
         <Link href={"/"}> Brush Up</Link>
       </h1>
-      <div className="flex gap-5">
-        <Button>
-          <Link href={"/create"}>입력</Link>
-        </Button>
-        {session ? (
-          <Button onClick={() => signOut()}>로그아웃</Button>
-        ) : (
-          <Button onClick={() => signIn()}>로그인</Button>
-        )}
-      </div>
+      {session ? <SubmenuOnLogin /> : <SubMenuOnLogout />}
     </header>
   );
 }
