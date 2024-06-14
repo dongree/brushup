@@ -7,39 +7,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { ProblemRes } from "@/types/problem";
+import getYMD from "@/utils/time";
 
-const data = [
-  {
-    id: 1,
-    name: "숫자 합치기2",
-    history: "OXXO",
-    createdAt: "2024-04-01",
-    recentlySolvedAt: "2024-04-08",
-  },
-  {
-    id: 2,
-    name: "숫자 합치기2",
-    history: "OXXO",
-    createdAt: "2024-04-01",
-    recentlySolvedAt: "2024-04-08",
-  },
-  {
-    id: 3,
-    name: "숫자 합치기2",
-    history: "OXXO",
-    createdAt: "2024-04-01",
-    recentlySolvedAt: "2024-04-08",
-  },
-  {
-    id: 4,
-    name: "숫자 합치기2",
-    history: "OXXO",
-    createdAt: "2024-04-01",
-    recentlySolvedAt: "2024-04-08",
-  },
-];
+type Props = {
+  problems: ProblemRes[];
+};
 
-export default function ProblemsTable() {
+export default function ProblemsTable({ problems }: Props) {
   return (
     <Table className="w-[800px] ">
       <TableHeader>
@@ -52,15 +27,17 @@ export default function ProblemsTable() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {data.map((e) => {
-          const { id, name, history, createdAt, recentlySolvedAt } = e;
+        {problems.map((e) => {
+          const { id, name, solvingHistory, createdAt, recentlySolvedAt } = e;
           return (
             <TableRow key={id}>
               <TableCell className="font-medium">{id}</TableCell>
               <TableCell>{name}</TableCell>
-              <TableCell>{history}</TableCell>
-              <TableCell className="text-right">{createdAt}</TableCell>
-              <TableCell className="text-right">{recentlySolvedAt}</TableCell>
+              <TableCell>{solvingHistory}</TableCell>
+              <TableCell className="text-right">{getYMD(createdAt)}</TableCell>
+              <TableCell className="text-right">
+                {getYMD(recentlySolvedAt)}
+              </TableCell>
             </TableRow>
           );
         })}
