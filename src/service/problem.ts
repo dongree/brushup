@@ -53,3 +53,16 @@ export async function resolve(id: number, isSolve: boolean) {
     .then((res) => res.json())
     .catch(console.error);
 }
+
+export async function skip(id: number) {
+  return fetch(`${process.env.NEXT_PUBLIC_URL}/api/problem/skip`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ id }),
+  })
+    .then((res) => res.json())
+    .catch(console.error);
+}

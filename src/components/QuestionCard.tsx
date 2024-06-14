@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "./ui/button";
 import { ProblemRes } from "@/types/problem";
-import { resolve } from "@/service/problem";
+import { resolve, skip } from "@/service/problem";
 
 type Props = {
   problem: ProblemRes;
@@ -46,7 +46,7 @@ export default function QuestionCard({ problem }: Props) {
       <CardFooter className="gap-1">
         <Button onClick={() => resolve(id, true)}>해결</Button>
         <Button onClick={() => resolve(id, false)}>살패</Button>
-        <Button>나중에</Button>
+        <Button onClick={() => skip(id)}>나중에</Button>
       </CardFooter>
     </Card>
   );
