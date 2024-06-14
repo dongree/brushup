@@ -4,13 +4,13 @@ import Level from "@/components/atoms/Level";
 import { Difficulty } from "@/types/common";
 import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { createProblem } from "@/service/problem";
 import { Problem } from "@/types/problem";
 import { useRouter } from "next/navigation";
+import WithLabel from "@/components/WithLabel";
 
 export default function CreateForm() {
   const [name, setName] = useState<string>("");
@@ -41,9 +41,11 @@ export default function CreateForm() {
   };
 
   return (
-    <form className="my-1 flex w-[350px] flex-col" onSubmit={handleSubmit}>
-      <div className="flex flex-col">
-        <Label htmlFor="name">Name</Label>
+    <form
+      className="my-1 flex w-[350px] flex-col gap-5"
+      onSubmit={handleSubmit}
+    >
+      <WithLabel name="Name" htmlFor="name">
         <Input
           type="text"
           id="name"
@@ -52,9 +54,8 @@ export default function CreateForm() {
           onChange={(e) => setName(e.target.value)}
           required
         />
-      </div>
-      <div className="flex flex-col">
-        <Label htmlFor="link">Link</Label>
+      </WithLabel>
+      <WithLabel name="Link" htmlFor="link">
         <Input
           type="url"
           id="link"
@@ -63,9 +64,8 @@ export default function CreateForm() {
           onChange={(e) => setLink(e.target.value)}
           required
         />
-      </div>
-      <div className="flex flex-col">
-        <Label htmlFor="type">유형</Label>
+      </WithLabel>
+      <WithLabel name="유형" htmlFor="type">
         <Input
           type="text"
           id="type"
@@ -74,9 +74,8 @@ export default function CreateForm() {
           onChange={(e) => setType(e.target.value)}
           required
         />
-      </div>
-      <div className="my-3 flex flex-col">
-        <Label>난이도</Label>
+      </WithLabel>
+      <WithLabel name="난이도">
         <div className="flex gap-2">
           <Level
             difficulty="HARD"
@@ -94,10 +93,9 @@ export default function CreateForm() {
             onClick={() => setDifficulty("EASY")}
           />
         </div>
-      </div>
+      </WithLabel>
 
-      <div className="my-3 flex flex-col">
-        <Label htmlFor="idea">Idea</Label>
+      <WithLabel name="Idea" htmlFor="idea">
         <Textarea
           id="idea"
           name="idea"
@@ -105,8 +103,9 @@ export default function CreateForm() {
           onChange={(e) => setIdea(e.target.value)}
           placeholder="문제 풀이 아이디어를 입력해주세요."
         />
-      </div>
-      <div className="my-3 flex items-center space-x-2">
+      </WithLabel>
+
+      <div className="flex items-center space-x-2">
         <Checkbox
           id="solved"
           checked={isSolved}
@@ -116,7 +115,7 @@ export default function CreateForm() {
           Did you solved?
         </label>
       </div>
-      <Button>제출</Button>
+      <Button>등록</Button>
     </form>
   );
 }

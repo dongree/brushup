@@ -8,13 +8,15 @@ type Props = {
 
 export default function Level({ difficulty, selectedValue, onClick }: Props) {
   return (
-    <button
-      className={`text-sm ${
-        selectedValue === difficulty ? "text-red-500" : "text-black"
+    <div
+      className={`cursor-pointer rounded-md px-2 py-1 text-sm ${
+        selectedValue === difficulty
+          ? " bg-gray-800 font-medium text-white"
+          : "text-black"
       }`}
       onClick={onClick}
     >
       {difficulty}
-    </button>
+    </div>
   );
 }
