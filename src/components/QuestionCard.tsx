@@ -10,6 +10,7 @@ import {
 import { Button } from "./ui/button";
 import { ProblemRes } from "@/types/problem";
 import { resolve, skip } from "@/service/problem";
+import getYMD from "@/utils/time";
 
 type Props = {
   problem: ProblemRes;
@@ -28,25 +29,47 @@ export default function QuestionCard({ problem }: Props) {
   } = problem;
 
   return (
-    <Card className="flex flex-col items-center">
+    <Card className="flex h-[250px] w-[250px] flex-col">
       <CardHeader>
-        <CardTitle className="text-base">
-          {name}
-          <a href={link} target="_blank" rel="noopener noreferrer">
-            {">"}
-          </a>
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="self-end text-xs font-light text-gray-600"
+        >
+          {"문제 풀러 가기"}
+        </a>
+        <CardTitle className="text-lg">
+          <p>{name}</p>
         </CardTitle>
       </CardHeader>
-      <CardContent className="flex flex-col items-center">
-        <div>{`난이도 : ${difficulty}`}</div>
-        <div>{`history : ${solvingHistory}`}</div>
-        <div>{`최근 푼 날짜 : ${recentlySolvedAt.slice(0, 10)}`}</div>
-        <div>Hint 보기</div>
+      <CardContent className="flex h-full flex-col">
+        {/* <p>{`난이도 : ${difficulty}`}</p> */}
+        <p>{`History : ${solvingHistory}`}</p>
+        <p>{`최근 풀이 날짜 : ${getYMD(recentlySolvedAt)}`}</p>
       </CardContent>
-      <CardFooter className="gap-1">
-        <Button onClick={() => resolve(id, true)}>해결</Button>
-        <Button onClick={() => resolve(id, false)}>살패</Button>
-        <Button onClick={() => skip(id)}>나중에</Button>
+      <CardFooter className="flex flex-col">
+        <div className="mb-2 flex w-full justify-between text-xs text-gray-600">
+          <button className="text-gray-800">Hint 보기</button>
+          <button onClick={() => skip(id)}>Skip</button>
+        </div>
+
+        <div className="flex w-full gap-2">
+          <Button
+            size="sm"
+            className="w-full"
+            onClick={() => resolve(id, true)}
+          >
+            해결
+          </Button>
+          <Button
+            size="sm"
+            className="w-full"
+            onClick={() => resolve(id, false)}
+          >
+            살패
+          </Button>
+        </div>
       </CardFooter>
     </Card>
   );
