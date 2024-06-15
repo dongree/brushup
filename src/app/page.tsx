@@ -1,6 +1,7 @@
 import QuestionCard from "@/components/QuestionCard";
 import { getMyProblem } from "@/service/problem";
 import { cookies } from "next/headers";
+import { Button } from "@/components/ui/button";
 
 export default async function Home() {
   const key = "next-auth.session-token";
@@ -19,6 +20,17 @@ export default async function Home() {
       </section>
     </main>
   ) : (
-    <div>login 해주세요...</div>
+    <main className="mt-52 flex flex-col items-center gap-3">
+      <p className="text-3xl font-semibold">
+        오늘은 어떤 알고리즘 문제를 복습할 지 고민하지 않으셨나요?
+      </p>
+      <p className="text-3xl font-semibold">
+        Brush Up에서 기억하고 싶은 알고리즘 문제를 등록해보세요!
+      </p>
+      <p className="text-3xl font-semibold">
+        문제를 등록하면 일정 주기마다 오늘의 Brush Up 문제를 알려드려요!
+      </p>
+      <Button size={"lg"}>로그인</Button>
+    </main>
   );
 }
