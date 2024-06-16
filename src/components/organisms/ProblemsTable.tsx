@@ -27,12 +27,23 @@ export default function ProblemsTable({ problems }: Props) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {problems.map((e) => {
-          const { id, name, solvingHistory, createdAt, recentlySolvedAt } = e;
+        {problems.map((e, idx) => {
+          const {
+            id,
+            name,
+            solvingHistory,
+            createdAt,
+            recentlySolvedAt,
+            link,
+          } = e;
           return (
             <TableRow key={id}>
-              <TableCell className="font-medium">{id}</TableCell>
-              <TableCell>{name}</TableCell>
+              <TableCell className="font-medium">{idx + 1}</TableCell>
+              <TableCell>
+                <a href={link} target="_blank" rel="noopener noreferrer">
+                  {name}
+                </a>
+              </TableCell>
               <TableCell>{solvingHistory}</TableCell>
               <TableCell className="text-right">{getYMD(createdAt)}</TableCell>
               <TableCell className="text-right">
