@@ -8,9 +8,13 @@ export async function GET(req: Request) {
   if (!cookie?.includes("next-auth.session-token="))
     return NextResponse.json([]);
 
+  const { searchParams } = new URL(req.url);
+  const pageNum = +(searchParams.get("pageNum") || "1");
+  const pageCount = +(searchParams.get("pageCount") || "10");
+
   const userid = await extractUserid(cookie);
 
-  const q = `SELECT * FROM problems WHERE userid=${userid}`;
+  const q = `SELECT * FROM problems WHERE userid=${userid} LIMIT ${(pageNum - 1) * pageCount}, ${pageCount}`;
   const data = await db.getConnection().then((connect) => connect.query(q));
 
   return Response.json(data[0]);

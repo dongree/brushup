@@ -7,14 +7,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { PROBLEM_COUNT_PER_PAGE } from "@/constants/limit";
 import { ProblemRes } from "@/types/problem";
 import getYMD from "@/utils/time";
 
 type Props = {
   problems: ProblemRes[];
+  pageNum: number;
 };
 
-export default function ProblemsTable({ problems }: Props) {
+export default function ProblemsTable({ problems, pageNum }: Props) {
   return (
     <Table className="w-[800px] ">
       <TableHeader>
@@ -38,7 +40,9 @@ export default function ProblemsTable({ problems }: Props) {
           } = e;
           return (
             <TableRow key={id}>
-              <TableCell className="font-medium">{idx + 1}</TableCell>
+              <TableCell className="font-medium">
+                {(pageNum - 1) * PROBLEM_COUNT_PER_PAGE + idx + 1}
+              </TableCell>
               <TableCell>
                 <a href={link} target="_blank" rel="noopener noreferrer">
                   {name}

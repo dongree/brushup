@@ -8,7 +8,7 @@ export default async function Home() {
   const cookie = cookies().toString();
   const hasSesstionToken = !!cookie.includes(key);
 
-  const problems = hasSesstionToken ? await getMyProblem(cookie) : [];
+  const problems = hasSesstionToken ? await getMyProblem(cookie, 1) : [];
 
   return hasSesstionToken ? (
     <main className="mt-32px flex flex-col items-center justify-between">
