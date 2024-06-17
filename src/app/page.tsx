@@ -1,5 +1,5 @@
 import QuestionCard from "@/components/QuestionCard";
-import { getMyProblem } from "@/service/problem";
+import { getTodayProblem } from "@/service/problem";
 import { cookies } from "next/headers";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -9,7 +9,7 @@ export default async function Home() {
   const cookie = cookies().toString();
   const hasSesstionToken = !!cookie.includes(key);
 
-  const problems = hasSesstionToken ? await getMyProblem(cookie, 1) : [];
+  const problems = hasSesstionToken ? await getTodayProblem(cookie) : [];
 
   return hasSesstionToken ? (
     problems.length === 0 ? (
