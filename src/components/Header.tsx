@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import SubmenuOnLogin from "@/components/SubMenuOnLogin";
 import SubMenuOnLogout from "@/components/SubMenuOnLogout";
+import { authOptions } from "@/lib/auth";
 
 export default async function Header() {
   const session = await getServerSession(authOptions);
