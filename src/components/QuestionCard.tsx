@@ -88,10 +88,11 @@ export default function QuestionCard({ problem }: Props) {
           {"문제 풀러 가기"}
         </a>
         <CardTitle className="text-lg">
-          <p>{`난이도 : ${difficulty}`}</p>
+          <p>{`유형 : ${type}`}</p>
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-1 flex-col overflow-y-auto">
+        <p>{`난이도 : ${difficulty}`}</p>
         <p className="">
           {idea.length === 0
             ? "풀이 idea를 작성하지 않으셨습니다."
