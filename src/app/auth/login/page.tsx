@@ -22,7 +22,7 @@ export default async function LoginPage({
   const providers = (await getProviders()) ?? {};
 
   return (
-    <section className="mt-[10%] flex justify-center">
+    <section className="mt-60 flex justify-center">
       <Login providers={providers} callbackUrl={callbackUrl ?? "/"} />
     </section>
   );
